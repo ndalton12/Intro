@@ -14,9 +14,22 @@ public class Lab12 extends Applet {
 		int tlX = midX - (startWidth/2);
 		int tlY = midY - (startHeight/2);
 		g.fillRect(tlX, tlY, startWidth, startHeight);
+		g.fillRect(tlX-(startWidth/2), tlY-(startHeight/2), startWidth/2, startHeight/2);
+		g.fillRect(tlX+startWidth, tlY-(startHeight/2), startWidth/2, startHeight/2);
+		g.fillRect(tlX-(startWidth/2), tlY+startHeight, startWidth/2, startHeight/2);
+		g.fillRect(tlX+startWidth, tlY+startHeight, startWidth/2, startHeight/2);
 		
-		if (maxX > 1) {
-			drawSquare1(g, maxX/2+startWidth/2, midY);
+		drawSquare2(g, tlX, tlY, startWidth, startHeight);
+		
+	}
+	
+	public void drawSquare2(Graphics g, int tlX, int tlY, int width, int height) {
+		if (height >= 1) {
+			g.fillRect(tlX, tlY, width, height);
+			drawSquare2(g, tlX-(width/2), tlY-(height/2), width/2, height/2);
+			drawSquare2(g, tlX+width, tlY-(height/2), width/2, height/2);
+			drawSquare2(g, tlX-(width/2), tlY+height, width/2, height/2);
+			drawSquare2(g, tlX+width, tlY+height, width/2, height/2);
 		}
 	}
 	
