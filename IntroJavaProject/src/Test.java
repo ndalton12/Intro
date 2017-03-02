@@ -1,24 +1,38 @@
-import java.applet.Applet;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.awt.*;
+import java.applet.*;
 
+public class Test extends Applet {
 
-public class Test {
+	private static final long serialVersionUID = 1L;
 
-	public static void main(String[] args) {
-		
-		count(10,20);
-		
+	public void paint(Graphics g) {
+		resize(1100, 1000);
+		drawSquares(g, 0, 100, 200);
+		drawBottomSquares(g, 750, 500, 200);
+
 	}
-	
-	public static void count(int a, int b) {
-		if (a <= b) {
-			count(a+1,b);
-			System.out.println(a+"");
+
+	public void drawSquares(Graphics g, int x, int y, int size) {
+
+		if (size >= 4 || x < 1000) {
+			g.setColor(Color.red);
+			g.fillRect(x, y, size, size);
+			x += size + 10;
+			y += .9 + (size*.25);
+			size *= .75;
+			drawSquares(g, x, y, size);
 		}
 	}
 
-}
+	public void drawBottomSquares(Graphics g, int x, int y, int size) {
 
+		if (size >= 4 || x > 0) {
+			g.setColor(Color.cyan);
+			g.fillRect(x, y, size, size);
+			System.out.println(x);
+			x -= 10 + (size * 0.75);
+			size *= (0.75);
+			drawBottomSquares(g, x, y, size);
+		}
+	}
+}
